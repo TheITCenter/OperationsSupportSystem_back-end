@@ -15,6 +15,7 @@ const routes = require('./routes');
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
+<<<<<<< HEAD
 //CRUD
 app.use('',routes);
 /*
@@ -23,6 +24,32 @@ app.get('/users/:email', userController.findOne)
 app.post('/users', userController.createUser)
 app.patch('/users/:email', userController.update)
 app.delete('/users/:email', userController.remove)*/
+=======
+app.get('/users',async(req,res) => {
+    // regresar todos los users
+    try{
+        const users = await findAll()
+        return res.status(200).send(users)
+    }catch(error){
+        return res.status(400).send(error)
+    }
+    //consol
+});
+
+app.post('/users', async(req,res) => {
+    //crear un nuevo user
+    try{
+        const user = await create(req.body)
+        //createBulk y se cambia la ruta con /users/Bulk
+        return res.status(201).send(user)
+    }catch(error){
+        console.log(error)
+        return res.status(400).send(error)
+    }
+
+
+});
+>>>>>>> 8bd4239... added comment
 
 connect(MONGODB_ADMIN,function(error){
     if(error){
