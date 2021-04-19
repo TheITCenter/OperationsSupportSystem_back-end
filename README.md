@@ -19,6 +19,6 @@ The backend part of the OSS backend
 
 Once Code is stable in develop, Develop will be merged to Master
 
->>>> This would be a github test modification
+>>>> This is a test for github notifications
 
 
