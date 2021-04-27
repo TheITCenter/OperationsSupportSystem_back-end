@@ -9,7 +9,7 @@ let  state = {
 
 //     }
 // }
-
+//equissss
 exports.connect = function(url, done){
     // url es la url de conexion
     // done --> done es un callback que va ejecutar algo si todo sale bien
