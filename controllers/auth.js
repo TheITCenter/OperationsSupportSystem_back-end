@@ -38,6 +38,88 @@ const createUser = async(req, res= response)=>{
     }
 }
 
+const findUser = async(req, res=response)=>{
+    const {id} = req.params;
+    console.log(id)
+    try{
+        let user = await User.findById(id)
+        if(!user){
+            res.status(400).json({
+                ok:false,
+                msg:"User not found"
+            })
+        }
+        res.status(201).json({
+            ok:true,
+            uid: user.id,
+            name:user.name,
+            lastName: user.lastName,
+            role: user.role
+        })
+    }catch(error){
+        res.status(500).json({
+            ok:false,
+            msg:"An error has ocurred, please talk to your sys adminnn"
+        })
+    }
+
+}
+
+
+const modifyUser = async(req, res= response)=>{
+
+    const {id} =req.params
+    const payload = req.body
+
+    try{
+        
+        let user = await User.findByIdAndUpdate(id, payload,{upsert:true, new:true})
+        
+        if(!user){
+            return res.status(400).json({
+                ok:false,
+                msg:"A User with that Id does not exist, please contact your sys admin"
+            })
+        }
+        res.status(201).json({
+            ok:true,
+            msg:user
+        })
+
+
+    }catch(error){
+        res.status(500).json({
+            ok:false,
+            msg:"An error has ocurred, please talk to your sys admin"
+        })
+    }
+
+}
+
+const deleteUser = async(req, res= response)=>{
+    const {id}= req.params;
+    
+    try{
+        let user = await User.findByIdAndDelete(id);
+        if(!user){
+            return res.status(400).json({
+                ok:false,
+                msg:"A User with that Id does not exist, please contact your sys admin"
+            })
+        }
+        res.status(201).json({
+            ok:true,
+            msg:user
+        })
+
+    }catch(error){
+        res.status(500).json({
+            ok:false,
+            msg:"An error has ocurred, please talk to your sys admin"
+        })
+    }
+}
+
 const userLogin = async(req, res= response)=>{
 
     const {email, password} = req.body;
@@ -89,4 +171,7 @@ module.exports ={
     revalidateToken,
     userLogin,
     createUser,
+    modifyUser,
+    findUser,
+    deleteUser
 }
