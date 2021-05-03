@@ -29,9 +29,9 @@ router.post('/',
 ], 
 userLogin
 );
-router.patch('/update/:id', modifyUser);
-router.delete('/delete/:id', deleteUser)
-router.get('/:id', findUser)
+router.patch('/update/:id',validateJWT, modifyUser);
+router.delete('/delete/:id',validateJWT, deleteUser)
+router.get('/:id',validateJWT, findUser)
 router.get('/renew',validateJWT, revalidateToken);
 
 
