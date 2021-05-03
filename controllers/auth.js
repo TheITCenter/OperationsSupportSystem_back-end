@@ -4,7 +4,6 @@ const User = require('../models/User');
 const {generateJWT} = require('../helpers/jwt');
 
 const createUser = async(req, res= response)=>{
-    console.log("I entered Here");
     
     const {email, password}= req.body;
     
@@ -40,7 +39,6 @@ const createUser = async(req, res= response)=>{
 }
 
 const userLogin = async(req, res= response)=>{
-    console.log("I entered HHHere");
 
     const {email, password} = req.body;
 
