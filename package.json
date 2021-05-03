@@ -1,20 +1,36 @@
 {
-  "name": "operationssystem",
+  "name": "operationssupportsystem_back-end",
   "version": "1.0.0",
-  "description": "",
+  "description": "The backend part of the OSS backend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheITCenter/OperationsSupportSystem_back-end.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheITCenter/OperationsSupportSystem_back-end/issues"
+  },
+  "homepage": "https://github.com/TheITCenter/OperationsSupportSystem_back-end#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "celebrate": "^14.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.10.1",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^3.6.6",
-    "mongoose": "^5.12.3"
+    "mongoose": "^5.12.7",
+    "socket.io": "^4.0.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
