@@ -8,7 +8,7 @@ const {check} =require('express-validator')
 const router = Router();
 const {validateFields} =require('../middlewares/field-validate')
 
-const {createUser, userLogin, revalidateToken} =require('../controllers/auth')
+const {createUser, modifyUser, userLogin, revalidateToken, findUser, deleteUser} =require('../controllers/auth')
 
 const {validateJWT} =require('../middlewares/validate-jwt');
 
@@ -29,6 +29,9 @@ router.post('/',
 ], 
 userLogin
 );
+router.patch('/update/:id', modifyUser);
+router.delete('/delete/:id', deleteUser)
+router.get('/:id', findUser)
 router.get('/renew',validateJWT, revalidateToken);
 
 
