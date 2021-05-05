@@ -2,10 +2,12 @@ const {response} = require ('express');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const {generateJWT} = require('../helpers/jwt');
+const {createConfirmCode} = require('../helpers/createConfirmCode')
 
 const createUser = async(req, res= response)=>{
     
     const {email, password}= req.body;
+    console.log(createUser());
     
     try{
         let user = await User.findOne({email});
@@ -131,6 +133,12 @@ const userLogin = async(req, res= response)=>{
                 ok:false,
                 msg:"A user with that email does not exist"
             });
+        }
+        if(user.status != "Active"){
+            return res.status(401).json({
+                ok: false,
+                msg:"Pending Account. Please Verify your email"
+            })
         }
         const validPassword = bcrypt.compareSync(password, user.password);
         if(!validPassword){
